@@ -1,0 +1,60 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_static admin_list %}
+
+{% block content %}
+  <div class="module">
+    <form action="" method="get" class="changelist-filter">
+      <div id="changelist-filter">
+        <h3>Filters</h3>
+        <div class="field-box">
+          <label for="category_id">Category:</label>
+          <select id="category_id" name="category_id">
+            <option value="">All</option>
+            <!-- Add options dynamically based on category data -->
+          </select>
+        </div>
+        <div class="field-box">
+          <label for="quantity_range">Quantity Range:</label>
+          <select id="quantity_range" name="quantity_range">
+            <option value="">All</option>
+            <option value="1-10">1-10</option>
+            <option value="10-20">10-20</option>
+            <option value=">=20">>= 20</option>
+          </select>
+        </div>
+        <input type="submit" value="Filter" class="button">
+      </div>
+    </form>
+    <div id="changelist-search">
+      <h3>Search</h3>
+      <input type="text" name="q" placeholder="Product name">
+      <input type="text" name="category_name" placeholder="Category name">
+      <input type="submit" value="Search" class="button">
+    </div>
+    <table id="result_list">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products        <tr class="{% cycle 'row1' 'row2' %}">
+          <th scope="row">{{ product.id }}</th>
+          <td>{{ product.name }}</td>
+          <td>{{ product.category }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.quantity }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5">No products found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_static admin_list %}
+
+{% block content %}
+  <div class="module">
+    <table id="result_list">
+      <thead>
+        <tr>
+          <th scope="col">{{ title }}</th>
+          <th scope="col">{{ name }}</th>
+          <th scope="col">{{ category }}</th>
+          <th scope="col">{{ price }}</th>
+          <th scope="col">{{ quantity }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{ product.id }}</th>
+          <td>{{ product.name }}</td>
+          <td>{{ product.category }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
